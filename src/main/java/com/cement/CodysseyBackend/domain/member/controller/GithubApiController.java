@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
@@ -15,28 +16,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
-@Controller
+@RestController
 public class GithubApiController {
-
-    @GetMapping(value = "/success")
-    public String success(HttpServletRequest request, Model model) throws JsonProcessingException {
-
-        /**
-         * Redirect의 Flash 값을 다루려면 RequestContextUtils를 사용해야 한다.
-         **/
-        Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
-        String response = null;
-        if (inputFlashMap != null) {
-            response = (String) inputFlashMap.get("result");
-        }
-
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        Map<String, String> result = objectMapper.readValue(response, Map.class);
-
-        model.addAttribute("result", result);
-        return "success";
-    }
 
     @GetMapping("/auth/github/callback")
     public String getCode(@RequestParam String code, RedirectAttributes redirectAttributes) throws IOException {
@@ -61,11 +42,12 @@ public class GithubApiController {
 
         conn.disconnect();
 
-        access(responseData, redirectAttributes);
-        return "redirect:/success";
+        String githubData = access(responseData, redirectAttributes);
+        System.out.println(githubData);
+        return githubData;
     }
 
-    public void access(String response, RedirectAttributes redirectAttributes) throws IOException {
+    public String access(String response, RedirectAttributes redirectAttributes) throws IOException {
 
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, String> map = objectMapper.readValue(response, Map.class);
@@ -81,10 +63,8 @@ public class GithubApiController {
         int responseCode = conn.getResponseCode();
 
         String result = getResponse(conn, responseCode);
-
         conn.disconnect();
-
-        redirectAttributes.addFlashAttribute("result", result);
+        return result;
     }
 
     private String getResponse(HttpURLConnection conn, int responseCode) throws IOException {
