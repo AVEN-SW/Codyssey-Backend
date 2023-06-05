@@ -43,7 +43,6 @@ public class GithubApiController {
         conn.disconnect();
 
         String githubData = access(responseData, redirectAttributes);
-        System.out.println(githubData);
         return githubData;
     }
 
