@@ -1,13 +1,18 @@
 package com.cement.CodysseyBackend.domain.oauth.github.dto;
 
-import java.util.List;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Builder
 public class GithubLoginResponse {
+    @Setter
     private boolean isCreated;
     private String github_id;
     private String avatar_url;
     private String username;
-    private String gender;
-    private List<String> stack;
     private String github_url;
 }
+
+
