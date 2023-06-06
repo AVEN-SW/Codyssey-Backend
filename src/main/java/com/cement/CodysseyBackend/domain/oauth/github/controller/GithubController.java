@@ -1,23 +1,18 @@
-package com.cement.CodysseyBackend.domain.oauth.controller;
+package com.cement.CodysseyBackend.domain.oauth.github.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
 @RestController
-public class GithubApiController {
+public class GithubController {
 
     @GetMapping("/auth/github/callback")
     public String getCode(@RequestParam String code, RedirectAttributes redirectAttributes) throws IOException {

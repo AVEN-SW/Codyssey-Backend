@@ -1,4 +1,4 @@
-package com.cement.CodysseyBackend.domain.oauth.controller;
+package com.cement.CodysseyBackend.domain.oauth.github.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

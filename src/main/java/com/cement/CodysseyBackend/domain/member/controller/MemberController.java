@@ -22,4 +22,9 @@ public class MemberController {
                 .body(member);
     }
 
+    @PostMapping("/members")
+    public void memberLogin() {
+
+    }
+
 }
