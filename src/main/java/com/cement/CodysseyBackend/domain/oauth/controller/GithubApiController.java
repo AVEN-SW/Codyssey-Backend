@@ -1,4 +1,4 @@
-package com.cement.CodysseyBackend.domain.member.controller;
+package com.cement.CodysseyBackend.domain.oauth.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
