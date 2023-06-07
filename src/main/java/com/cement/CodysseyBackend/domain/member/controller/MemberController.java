@@ -5,9 +5,7 @@ import com.cement.CodysseyBackend.domain.member.dto.MemberCreateRequest;
 import com.cement.CodysseyBackend.domain.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -21,5 +19,11 @@ public class MemberController {
         return ResponseEntity.ok()
                 .body(member);
     }
+
+    // TODO 로그인 기능
+//    @GetMapping("/members")
+//    public ResponseEntity<Member> memberLogin() {
+//
+//    }
 
 }
