@@ -18,7 +18,7 @@ public class GithubController {
     @GetMapping("/auth/github/callback")
     public ResponseEntity<GithubLoginResponse> getCode(@RequestParam String code, RedirectAttributes redirectAttributes){
         String responseData = githubService.getCode(code);
-
+        System.out.println(responseData);
         GithubLoginResponse githubData = githubService.access(responseData, redirectAttributes);
         githubData.setCreated(githubService.createCheck(githubData));
 

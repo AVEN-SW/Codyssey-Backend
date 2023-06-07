@@ -78,7 +78,6 @@ public class GithubService {
         } catch (Exception e) {
             System.out.println("ERROR");
         }
-
         return jsonResponse;
     }
 
