@@ -4,6 +4,7 @@ import com.cement.CodysseyBackend.domain.member.domain.Member;
 import com.cement.CodysseyBackend.domain.member.domain.Profile;
 import com.cement.CodysseyBackend.domain.member.domain.Stack;
 import com.cement.CodysseyBackend.domain.member.dto.MemberCreateRequest;
+import com.cement.CodysseyBackend.domain.member.dto.MemberLoginRequest;
 import com.cement.CodysseyBackend.domain.member.repository.MemberRepository;
 import com.cement.CodysseyBackend.domain.member.repository.ProfileRepository;
 import com.cement.CodysseyBackend.domain.member.repository.StackRepository;
@@ -13,6 +14,8 @@ import com.cement.CodysseyBackend.domain.oauth.github.dto.GithubLoginResponse;
 import com.cement.CodysseyBackend.domain.oauth.github.service.GithubService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -62,4 +65,20 @@ public class MemberService {
 
         return responseMember;
     }
+
+    public Member login(String request) {
+        boolean check = tokenAccessCheck(request);
+        if (check) {
+            Optional<Member> member = memberRepository.findByAccessToken(request);
+            return member.get();
+        } else {
+            return Member.builder().build();
+        }
+    }
+
+    private boolean tokenAccessCheck(String check) {
+        Optional<Member> findMember = memberRepository.findByAccessToken(check);
+        return findMember.isPresent();
+    }
+
 }

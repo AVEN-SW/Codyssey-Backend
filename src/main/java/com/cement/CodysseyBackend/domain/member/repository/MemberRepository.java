@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {
     public Optional<Member> findByGithubId(String githubId);
+    public Optional<Member> findByAccessToken(String accessToken);
 }
