@@ -1,9 +1,6 @@
 package com.cement.CodysseyBackend.domain.member.domain;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -21,8 +18,9 @@ public class Member {
     @Column(name = "id", updatable = false)
     private Long id;
 
-    @Column(name = "access_key")
-    private String accessKey;
+    @Setter
+    @Column(name = "access_token")
+    private String accessToken;
 
     @Column(name = "github_id", nullable = false, unique = true)
     private String githubId;

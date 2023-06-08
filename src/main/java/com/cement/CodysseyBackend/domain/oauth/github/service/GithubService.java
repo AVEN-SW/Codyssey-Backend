@@ -139,9 +139,19 @@ public class GithubService {
         }
     }
 
-    public void saveAccessKey(Access response) {
+    public void saveAccessToken(Access response) {
         accessRepository.save(response);
         // TODO 업데이트 되는지 확인 필요
+    }
+
+    public void saveMemberAccessToken(Access response) {
+        Optional<Member> findMember = memberRepository.findByGithubId(response.getGithubId());
+
+        if (findMember.isPresent()) {
+            Member member = findMember.get();
+            member.setAccessToken(response.getAccessToken());
+            memberRepository.save(member);
+        }
     }
 
 }
