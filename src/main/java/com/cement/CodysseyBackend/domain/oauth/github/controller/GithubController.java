@@ -41,12 +41,6 @@ public class GithubController {
             // Member가 있을 경우 Member Table에 Access Token 등록
             githubService.saveMemberAccessToken(response);
         }
-        // TODO 로그인시 Access 토큰 확인
-//        githubData.setCreated(githubService.createCheck(githubData));
-
-
-//        return ResponseEntity.ok()
-//                .body(githubData);
         return ResponseEntity.ok()
                 .body(accessTokenResponse);
     }

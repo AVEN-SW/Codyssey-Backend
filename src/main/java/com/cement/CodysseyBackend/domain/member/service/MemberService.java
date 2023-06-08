@@ -63,6 +63,12 @@ public class MemberService {
             stackRepository.save(memberStack);
         }
 
+        Access access = Access.builder()
+                        .githubId(responseMember.getGithubId())
+                        .accessToken(request.getAccess_token())
+                        .build();
+        githubService.saveMemberAccessToken(access);
+
         return responseMember;
     }
 
