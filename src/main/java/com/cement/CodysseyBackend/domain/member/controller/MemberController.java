@@ -2,6 +2,7 @@ package com.cement.CodysseyBackend.domain.member.controller;
 
 import com.cement.CodysseyBackend.domain.member.domain.Member;
 import com.cement.CodysseyBackend.domain.member.dto.MemberCreateRequest;
+import com.cement.CodysseyBackend.domain.member.dto.MemberLoginRequest;
 import com.cement.CodysseyBackend.domain.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +21,12 @@ public class MemberController {
                 .body(member);
     }
 
-    // TODO 로그인 기능
-//    @GetMapping("/members")
-//    public ResponseEntity<Member> memberLogin() {
-//
-//    }
+    // 로그인 기능
+    @GetMapping("/members")
+    public ResponseEntity<Member> memberLogin(@RequestParam String access) {
+        Member loginMember = memberService.login(access);
+        return ResponseEntity.ok()
+                .body(loginMember);
+    }
 
 }
