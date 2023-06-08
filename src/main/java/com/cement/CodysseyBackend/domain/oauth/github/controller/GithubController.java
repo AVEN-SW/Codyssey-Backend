@@ -21,7 +21,7 @@ public class GithubController {
     public ResponseEntity<AccessTokenResponse> getCode(@RequestParam String code, RedirectAttributes redirectAttributes){
         String responseData = githubService.getCode(code);
         String access_token = githubService.getAccessToken(responseData);
-        GithubLoginResponse githubData = githubService.access(access_token, redirectAttributes);
+        GithubLoginResponse githubData = githubService.access(access_token);
 
         Access response = Access.builder()
                 .githubId(githubData.getGithub_id())

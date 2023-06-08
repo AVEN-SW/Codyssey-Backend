@@ -64,7 +64,7 @@ public class GithubService {
         return access_token;
     }
 
-    public GithubLoginResponse access(String access_token, RedirectAttributes redirectAttributes) {
+    public GithubLoginResponse access(String access_token) {
         String result = null;
         GithubLoginResponse jsonResponse = null;
         try {
