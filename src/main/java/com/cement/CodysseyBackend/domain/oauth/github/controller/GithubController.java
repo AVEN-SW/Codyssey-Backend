@@ -1,5 +1,7 @@
 package com.cement.CodysseyBackend.domain.oauth.github.controller;
 
+import com.cement.CodysseyBackend.domain.oauth.github.domain.Access;
+import com.cement.CodysseyBackend.domain.oauth.github.dto.AccessTokenResponse;
 import com.cement.CodysseyBackend.domain.oauth.github.dto.GithubLoginResponse;
 import com.cement.CodysseyBackend.domain.oauth.github.service.GithubService;
 import lombok.RequiredArgsConstructor;
@@ -16,19 +18,34 @@ public class GithubController {
     private final GithubService githubService;
 
     @GetMapping("/auth/github/callback")
-    public ResponseEntity<GithubLoginResponse> getCode(@RequestParam String code, RedirectAttributes redirectAttributes){
+    public ResponseEntity<AccessTokenResponse> getCode(@RequestParam String code, RedirectAttributes redirectAttributes){
         String responseData = githubService.getCode(code);
-        System.out.println(responseData);
-        GithubLoginResponse githubData = githubService.access(responseData, redirectAttributes);
-        githubData.setCreated(githubService.createCheck(githubData));
+        String access_token = githubService.getAccessToken(responseData);
+        GithubLoginResponse githubData = githubService.access(access_token, redirectAttributes);
 
-//        System.out.println(githubData.getGithub_id());
-//        System.out.println(githubData.getGithub_url());
-//        System.out.println(githubData.getAvatar_url());
-//        System.out.println(githubData.getUsername());
-//        System.out.println(githubData.isCreated());
+        Access response = Access.builder()
+                .githubId(githubData.getGithub_id())
+                .accessToken(access_token)
+                .build();
+        githubService.saveAccessKey(response);
 
+        boolean isCreated = githubData.isCreated();
+
+        AccessTokenResponse accessTokenResponse = AccessTokenResponse.builder()
+                .github_id(githubData.getGithub_id())
+                .access_token(access_token)
+                .isCreated(githubData.isCreated())
+                .build();
+
+
+        // TODO Member가 있을 경우 Member Table에 Access Token 등록
+        // TODO 로그인시 Access 토큰 확인
+//        githubData.setCreated(githubService.createCheck(githubData));
+
+
+//        return ResponseEntity.ok()
+//                .body(githubData);
         return ResponseEntity.ok()
-                .body(githubData);
+                .body(accessTokenResponse);
     }
 }

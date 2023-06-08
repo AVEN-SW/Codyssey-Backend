@@ -21,6 +21,9 @@ public class Member {
     @Column(name = "id", updatable = false)
     private Long id;
 
+    @Column(name = "access_key")
+    private String accessKey;
+
     @Column(name = "github_id", nullable = false, unique = true)
     private String githubId;
 
