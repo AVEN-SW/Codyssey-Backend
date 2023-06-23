@@ -19,7 +19,9 @@ public class StudyService {
                 .content(request.getContent())
                 .category(request.getCategory())
                 .build();
+//        Study study = StudyCreateRequest.toEntity(request);
         Study returnStudy = studyRepository.save(study);
         return returnStudy;
     }
+
 }
