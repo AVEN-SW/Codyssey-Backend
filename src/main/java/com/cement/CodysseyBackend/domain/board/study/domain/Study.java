@@ -21,18 +21,22 @@ public class Study {
     @Column(name = "study_id")
     private Long studyId;
 
+    // *
     @Column(name = "writer_id")
     private Long writerId;
 
+    // *
     @Column(name = "title")
     private String title;
 
+    // *
     @Column(name = "content")
     private String content;
 
     @Column(name = "save_count")
     private Long saveCount;
 
+    // *
     @Column(name = "category")
     private String category;
 
