@@ -2,12 +2,14 @@ package com.cement.CodysseyBackend.domain.board.project.domain;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "project_applicant")
 @Getter
+@NoArgsConstructor
 public class ProjectApplicant {
 
     @Id
