@@ -20,7 +20,7 @@ public class ProjectService {
                         .content(request.getContent())
                         .frontNum(request.getFrontNum())
                         .backNum(request.getBackNum())
-                        .designNum(request.getFrontNum())
+                        .designNum(request.getDesignNum())
                         .build();
 
 
