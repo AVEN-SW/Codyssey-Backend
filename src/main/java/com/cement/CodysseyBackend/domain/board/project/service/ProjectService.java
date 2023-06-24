@@ -23,7 +23,6 @@ public class ProjectService {
                         .designNum(request.getDesignNum())
                         .build();
 
-
         Project returnProject = projectRepository.save(project);
         return returnProject;
     }
