@@ -6,6 +6,8 @@ import com.cement.CodysseyBackend.domain.board.project.repository.ProjectReposit
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ProjectService {
@@ -27,8 +29,9 @@ public class ProjectService {
         return returnProject;
     }
 
-//    public List<> getProjectList(){
-//
-//    }
+    public List<Project> getProjectList(){
+        List<Project> projectList = projectRepository.findAll();
+        return projectList;
+    }
 
 }
