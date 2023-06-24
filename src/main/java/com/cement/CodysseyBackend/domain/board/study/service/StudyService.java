@@ -21,13 +21,12 @@ public class StudyService {
                 .content(request.getContent())
                 .category(request.getCategory())
                 .build();
-//        Study study = StudyCreateRequest.toEntity(request);
         Study returnStudy = studyRepository.save(study);
         return returnStudy;
     }
 
     public List<Study> getStudyList() {
-        List<Study> studyList = studyRepository.findAllByDeletedAndClosed(false, false);
+        List<Study> studyList = studyRepository.findByIsDeleted(false);
         return studyList;
     }
 }

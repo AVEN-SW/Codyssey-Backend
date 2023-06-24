@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface StudyRepository extends JpaRepository<Study, Long> {
-    public List<Study> findAllByDeletedAndClosed(boolean isDeleted, boolean isClosed);
+    List<Study> findByIsDeleted(Boolean isDeleted);
 }
