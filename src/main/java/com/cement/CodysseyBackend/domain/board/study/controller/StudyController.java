@@ -2,6 +2,7 @@ package com.cement.CodysseyBackend.domain.board.study.controller;
 
 import com.cement.CodysseyBackend.domain.board.study.domain.Study;
 import com.cement.CodysseyBackend.domain.board.study.dto.StudyCreateRequest;
+import com.cement.CodysseyBackend.domain.board.study.dto.StudyUpdateRequest;
 import com.cement.CodysseyBackend.domain.board.study.service.StudyService;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.connector.Response;
@@ -37,5 +38,14 @@ public class StudyController {
         Study study = studyService.deleteStudy(id);
         return ResponseEntity.ok()
                 .body(study);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Study> updateStudy(@PathVariable("id") Long id,
+                                             @RequestBody StudyUpdateRequest request) {
+        Study updateStudy = studyService.updateStudy(id, request);
+
+        return ResponseEntity.ok()
+                .body(updateStudy);
     }
 }
