@@ -2,6 +2,7 @@ package com.cement.CodysseyBackend.domain.board.project.controller;
 
 import com.cement.CodysseyBackend.domain.board.project.domain.Project;
 import com.cement.CodysseyBackend.domain.board.project.dto.ProjectCreateRequest;
+import com.cement.CodysseyBackend.domain.board.project.dto.ProjectUpdateRequest;
 import com.cement.CodysseyBackend.domain.board.project.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,13 @@ public class ProjectController {
         return ResponseEntity.ok().body(projectList);
     }
 
+    @PutMapping("/{projectId}")
+    public ResponseEntity<Project> modifyProject(@PathVariable("projectId") Long projectId,
+                                                 @RequestBody ProjectUpdateRequest request){
+        Project project = projectService.updateProject(projectId, request);
 
+        return ResponseEntity.ok()
+                .body(project);
+    }
 
 }

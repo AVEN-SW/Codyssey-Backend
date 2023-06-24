@@ -1,9 +1,6 @@
 package com.cement.CodysseyBackend.domain.board.project.domain;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -24,21 +21,26 @@ public class Project {
     private Long writerId;
 
     @Column(name = "title", nullable = false)
+    @Setter
     private String title;
 
     @Column(name = "content", nullable = false)
+    @Setter
     private String content;
 
     @Column(name = "save_count", nullable = false)
     private Long saveCount;
 
     @Column(name = "front_num", nullable = false)
+    @Setter
     private int frontNum;
 
     @Column(name = "back_num", nullable = false)
+    @Setter
     private int backNum;
 
     @Column(name = "design_num", nullable = false)
+    @Setter
     private int designNum;
 
     @Column(name = "isClosed", nullable = false)
