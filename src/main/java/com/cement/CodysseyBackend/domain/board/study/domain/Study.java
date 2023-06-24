@@ -24,10 +24,12 @@ public class Study {
 
     // *
     @Column(name = "title")
+    @Setter
     private String title;
 
     // *
     @Column(name = "content")
+    @Setter
     private String content;
 
     @Column(name = "save_count")
@@ -35,6 +37,7 @@ public class Study {
 
     // *
     @Column(name = "category")
+    @Setter
     private String category;
 
     @Column(name = "createAt")
