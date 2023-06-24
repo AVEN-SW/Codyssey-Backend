@@ -2,6 +2,7 @@ package com.cement.CodysseyBackend.domain.board.study.service;
 
 import com.cement.CodysseyBackend.domain.board.study.domain.Study;
 import com.cement.CodysseyBackend.domain.board.study.dto.StudyCreateRequest;
+import com.cement.CodysseyBackend.domain.board.study.dto.StudyUpdateRequest;
 import com.cement.CodysseyBackend.domain.board.study.repository.StudyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,16 @@ public class StudyService {
         findStudy.setDeleted(true);
         Study saveStudy = studyRepository.save(findStudy);
         return saveStudy;
+    }
+
+    public Study updateStudy(Long id, StudyUpdateRequest request) {
+        Study findStudy = studyRepository.findById(id).get();
+        findStudy.setTitle(request.getTitle());
+        findStudy.setContent(request.getContent());
+        findStudy.setCategory(request.getCategory());
+
+        Study updateStudy = studyRepository.save(findStudy);
+
+        return updateStudy;
     }
 }
