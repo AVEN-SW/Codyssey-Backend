@@ -1,9 +1,6 @@
 package com.cement.CodysseyBackend.domain.board.study.domain;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -49,9 +46,11 @@ public class Study {
     private Timestamp updateAt;
 
     @Column(name = "isDeleted")
+    @Setter
     private boolean isDeleted;
 
     @Column(name = "isClosed")
+    @Setter
     private boolean isClosed;
 
     @Builder

@@ -29,4 +29,13 @@ public class StudyService {
         List<Study> studyList = studyRepository.findByIsDeleted(false);
         return studyList;
     }
+
+    public Study deleteStudy(Long id) {
+        // 삭제할 게시판 정보 가져오기
+        Study findStudy = studyRepository.findById(id).get();
+        // 멤버변수 변경
+        findStudy.setDeleted(true);
+        Study saveStudy = studyRepository.save(findStudy);
+        return saveStudy;
+    }
 }
