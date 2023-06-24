@@ -31,4 +31,11 @@ public class StudyController {
         return ResponseEntity.ok()
                 .body(studyList);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Study> deleteStudy(@PathVariable("id") Long id) {
+        Study study = studyService.deleteStudy(id);
+        return ResponseEntity.ok()
+                .body(study);
+    }
 }
