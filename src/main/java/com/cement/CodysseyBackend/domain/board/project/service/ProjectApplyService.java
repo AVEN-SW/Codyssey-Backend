@@ -14,18 +14,17 @@ public class ProjectApplyService {
     private final ProjectApplyRepository projectApplyRepository;
 
     public ProjectApplicant applyProject(ProjectApplyRequest request){
+
        ProjectApplicant projectApplicant = ProjectApplicant.builder()
                .projectId(request.getProjectId())
                .applicantUserId(request.getApplicantUserId())
                .position(request.getPosition())
                .content(request.getContent())
                .build();
+
        ProjectApplicant returnProjectApplicant = projectApplyRepository.save(projectApplicant);
        return returnProjectApplicant;
 
     }
-
-
-
 
 }

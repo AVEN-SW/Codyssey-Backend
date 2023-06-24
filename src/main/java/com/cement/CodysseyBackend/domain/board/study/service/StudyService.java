@@ -6,6 +6,8 @@ import com.cement.CodysseyBackend.domain.board.study.repository.StudyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class StudyService {
@@ -19,9 +21,12 @@ public class StudyService {
                 .content(request.getContent())
                 .category(request.getCategory())
                 .build();
-//        Study study = StudyCreateRequest.toEntity(request);
         Study returnStudy = studyRepository.save(study);
         return returnStudy;
     }
 
+    public List<Study> getStudyList() {
+        List<Study> studyList = studyRepository.findByIsDeleted(false);
+        return studyList;
+    }
 }
