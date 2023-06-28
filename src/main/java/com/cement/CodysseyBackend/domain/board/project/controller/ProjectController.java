@@ -19,25 +19,32 @@ public class ProjectController {
     private final ProjectService projectService;
 
     @PostMapping
-    public ResponseEntity<Project> createProject(@RequestBody ProjectCreateRequest request){
+    @ResponseStatus(HttpStatus.CREATED)
+    public Project createProject(@RequestBody ProjectCreateRequest request){
         Project project = projectService.createProject(request);
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(project);
+        return project;
     }
 
     @GetMapping
-    public ResponseEntity<List<Project>> readProject(){
+    @ResponseStatus(HttpStatus.OK)
+    public List<Project> readProject(){
         List<Project> projectList = projectService.getProjectList();
-        return ResponseEntity.ok().body(projectList);
+        return projectList;
     }
 
     @PutMapping("/{projectId}")
-    public ResponseEntity<Project> modifyProject(@PathVariable("projectId") Long projectId,
+    @ResponseStatus(HttpStatus.OK)
+    public Project modifyProject(@PathVariable("projectId") Long projectId,
                                                  @RequestBody ProjectUpdateRequest request){
         Project project = projectService.updateProject(projectId, request);
 
-        return ResponseEntity.ok()
-                .body(project);
+        return project;
     }
 
+    @DeleteMapping("/{projectId}")
+    @ResponseStatus(HttpStatus.OK)
+    public Project deleteProject(@PathVariable("projectId") Long projectId) {
+        Project project = projectService.deleteProject(projectId);
+        return project;
+    }
 }

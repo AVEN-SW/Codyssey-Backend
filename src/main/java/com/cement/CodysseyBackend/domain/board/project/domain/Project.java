@@ -55,6 +55,7 @@ public class Project {
     private Timestamp updateAt;
 
     @Column(name = "isDeleted", nullable = false)
+    @Setter
     private boolean isDeleted;
 
     @Builder

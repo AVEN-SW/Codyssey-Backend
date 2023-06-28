@@ -48,4 +48,13 @@ public class ProjectService {
         return projectRepository.save(project);
     }
 
+    public Project deleteProject(Long projectId){
+        Optional<Project> OptionalProject = projectRepository.findById(projectId);
+        Project project = OptionalProject.get();
+
+        project.setDeleted(true);
+        projectRepository.save(project);
+        return project;
+    }
+
 }
