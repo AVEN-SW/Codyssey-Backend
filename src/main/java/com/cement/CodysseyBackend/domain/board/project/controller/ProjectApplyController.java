@@ -7,10 +7,7 @@ import com.cement.CodysseyBackend.domain.board.project.service.ProjectApplyServi
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,12 +17,12 @@ public class ProjectApplyController {
     private final ProjectApplyService projectApplyService;
 
     @PostMapping
-    public ResponseEntity<ProjectApplicant> applyProject(@RequestBody ProjectApplyRequest request){
+    @ResponseStatus(HttpStatus.CREATED)
+    public ProjectApplicant applyProject(@RequestBody ProjectApplyRequest request){
         ProjectApplicant projectApplicant =
                 projectApplyService.applyProject(request);
 
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(projectApplicant);
+        return projectApplicant;
 
     }
 }
