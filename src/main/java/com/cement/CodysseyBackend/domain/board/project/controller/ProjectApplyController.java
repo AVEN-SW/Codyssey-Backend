@@ -17,7 +17,7 @@ public class ProjectApplyController {
     private final ProjectApplyService projectApplyService;
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public ProjectApplicant applyProject(@RequestBody ProjectApplyRequest request){
         ProjectApplicant projectApplicant =
                 projectApplyService.applyProject(request);
