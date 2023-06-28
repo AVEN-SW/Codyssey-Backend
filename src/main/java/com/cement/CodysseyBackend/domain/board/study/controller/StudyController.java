@@ -5,9 +5,7 @@ import com.cement.CodysseyBackend.domain.board.study.dto.StudyCreateRequest;
 import com.cement.CodysseyBackend.domain.board.study.dto.StudyUpdateRequest;
 import com.cement.CodysseyBackend.domain.board.study.service.StudyService;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,32 +18,32 @@ public class StudyController {
     private final StudyService studyService;
 
     @PostMapping
-    public ResponseEntity<Study> createStudy(@RequestBody StudyCreateRequest request) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Study createStudy(@RequestBody StudyCreateRequest request) {
         Study createdStudy = studyService.createStudy(request);
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(createdStudy);
+        return createdStudy;
     }
 
     @GetMapping
-    public ResponseEntity<List<Study>> getStudyList() {
+    @ResponseStatus(HttpStatus.OK)
+    public List<Study> getStudyList() {
         List<Study> studyList = studyService.getStudyList();
-        return ResponseEntity.ok()
-                .body(studyList);
+        return studyList;
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Study> deleteStudy(@PathVariable("id") Long id) {
+    @ResponseStatus(HttpStatus.OK)
+    public Study deleteStudy(@PathVariable("id") Long id) {
         Study study = studyService.deleteStudy(id);
-        return ResponseEntity.ok()
-                .body(study);
+        return study;
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Study> updateStudy(@PathVariable("id") Long id,
+    @ResponseStatus(HttpStatus.OK)
+    public Study updateStudy(@PathVariable("id") Long id,
                                              @RequestBody StudyUpdateRequest request) {
         Study updateStudy = studyService.updateStudy(id, request);
 
-        return ResponseEntity.ok()
-                .body(updateStudy);
+        return updateStudy;
     }
 }
