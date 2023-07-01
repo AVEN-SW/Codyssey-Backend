@@ -2,6 +2,7 @@ package com.cement.CodysseyBackend.domain.board.study.controller;
 
 import com.cement.CodysseyBackend.domain.board.study.domain.Study;
 import com.cement.CodysseyBackend.domain.board.study.domain.StudyApplicant;
+import com.cement.CodysseyBackend.domain.board.study.domain.StudyRecruit;
 import com.cement.CodysseyBackend.domain.board.study.dto.StudyApplyRequest;
 import com.cement.CodysseyBackend.domain.board.study.dto.StudyCancelRequest;
 import com.cement.CodysseyBackend.domain.board.study.repository.StudyApplicantRepository;
@@ -39,8 +40,11 @@ public class StudyApplyController {
     }
     // TODO 스터디 수락 기능
     @GetMapping("/{id}")
-    public void studyAcceptApply(@PathVariable("id") Long id) {
-
+    @ResponseStatus(HttpStatus.OK)
+    public List<StudyRecruit> studyAcceptApply(@PathVariable("id") Long id,
+                                               @RequestParam Long userId) {
+        List<StudyRecruit> studyRecruits = studyApplyService.studyAccept(id, userId);
+        return studyRecruits;
     }
 
     // TODO 스터디 거절 기능
