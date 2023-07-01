@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface StudyApplicantRepository extends JpaRepository<StudyApplicant, Long> {
     List<StudyApplicant> findByStudyId(Long studyId);
     Optional<StudyApplicant> findByStudyIdAndApplicantUserId(Long studyId, Long applicantUserId);
+    void deleteByStudyIdAndApplicantUserId(Long studyId, Long applicantUserId);
 }
