@@ -49,7 +49,10 @@ public class StudyApplyController {
 
     // TODO 스터디 거절 기능
     @PutMapping("/{id}")    // 지원 Table을 수정 (멤버를 뺴냄)
-    public void studyRefusalApply(@PathVariable("id") Long id) {
-
+    @ResponseStatus(HttpStatus.OK)
+    public List<StudyApplicant> studyRefusalApply(@PathVariable("id") Long id,
+                                  @RequestParam Long userId) {
+        List<StudyApplicant> studyRecruits = studyApplyService.studyRefusal(id, userId);
+        return studyRecruits;
     }
 }

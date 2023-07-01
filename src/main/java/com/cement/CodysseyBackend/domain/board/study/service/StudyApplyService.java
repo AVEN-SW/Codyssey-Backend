@@ -83,4 +83,20 @@ public class StudyApplyService {
 
         return findRecruits;
     }
+
+    public List<StudyApplicant> studyRefusal(Long studyId, Long userId) {
+
+        // 예외 처리
+        // 유저가 지원하지 않은 경우
+        Optional<StudyApplicant> findApplicant = studyApplicantRepository.findByStudyIdAndApplicantUserId(studyId, userId);
+        if (findApplicant.isEmpty()) {
+            return null;
+        }
+
+        // 지원자 테이블에서 삭제
+        studyCancel(studyId, userId);
+
+        List<StudyApplicant> findApplicants = studyApplicantRepository.findByStudyId(studyId);
+        return findApplicants;
+    }
 }
