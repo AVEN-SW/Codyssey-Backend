@@ -30,7 +30,7 @@ public class StudyApplyController {
         List<StudyApplicant> studyApplicants = studyApplyService.studyApply(id, request);
         return studyApplicants;
     }
-    // TODO 스터디 지원 취소 기능
+    // 스터디 지원 취소 기능
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public List<StudyApplicant> studyCancelApply(@PathVariable("id") Long id,
@@ -38,7 +38,7 @@ public class StudyApplyController {
         List<StudyApplicant> studyApplicants = studyApplyService.studyCancel(id, userId);
         return studyApplicants;
     }
-    // TODO 스터디 수락 기능
+    // 스터디 수락 기능
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public List<StudyRecruit> studyAcceptApply(@PathVariable("id") Long id,
@@ -47,7 +47,7 @@ public class StudyApplyController {
         return studyRecruits;
     }
 
-    // TODO 스터디 거절 기능
+    // 스터디 거절 기능
     @PutMapping("/{id}")    // 지원 Table을 수정 (멤버를 뺴냄)
     @ResponseStatus(HttpStatus.OK)
     public List<StudyApplicant> studyRefusalApply(@PathVariable("id") Long id,

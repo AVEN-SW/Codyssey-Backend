@@ -52,4 +52,13 @@ public class StudyService {
 
         return updateStudy;
     }
+
+    public Study closeStudy(Long studyId) {
+        Study findStudy = studyRepository.findById(studyId).get();
+
+        findStudy.setClosed(true);
+        studyRepository.save(findStudy);
+        findStudy = studyRepository.findById(studyId).get();
+        return findStudy;
+    }
 }
