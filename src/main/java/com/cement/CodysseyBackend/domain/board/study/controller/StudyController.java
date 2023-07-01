@@ -17,6 +17,7 @@ public class StudyController {
 
     private final StudyService studyService;
 
+    // 스터디 생성 기능
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Study createStudy(@RequestBody StudyCreateRequest request) {
@@ -24,6 +25,8 @@ public class StudyController {
         return createdStudy;
     }
 
+
+    // 스터디 목록 가져오기
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Study> getStudyList() {
@@ -31,6 +34,7 @@ public class StudyController {
         return studyList;
     }
 
+    // 스터디 삭제 기능
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Study deleteStudy(@PathVariable("id") Long id) {
@@ -38,6 +42,7 @@ public class StudyController {
         return study;
     }
 
+    // 스터디 수정 기능
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Study updateStudy(@PathVariable("id") Long id,
@@ -45,5 +50,13 @@ public class StudyController {
         Study updateStudy = studyService.updateStudy(id, request);
 
         return updateStudy;
+    }
+
+    // TODO 스터디 마감 기능
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Study closeStudy(@PathVariable("id") Long id) {
+        Study closedStudy = studyService.closeStudy(id);
+        return closedStudy;
     }
 }
