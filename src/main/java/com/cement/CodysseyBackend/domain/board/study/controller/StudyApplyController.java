@@ -3,6 +3,7 @@ package com.cement.CodysseyBackend.domain.board.study.controller;
 import com.cement.CodysseyBackend.domain.board.study.domain.Study;
 import com.cement.CodysseyBackend.domain.board.study.domain.StudyApplicant;
 import com.cement.CodysseyBackend.domain.board.study.dto.StudyApplyRequest;
+import com.cement.CodysseyBackend.domain.board.study.dto.StudyCancelRequest;
 import com.cement.CodysseyBackend.domain.board.study.repository.StudyApplicantRepository;
 import com.cement.CodysseyBackend.domain.board.study.service.StudyApplyService;
 import com.cement.CodysseyBackend.domain.board.study.study;
@@ -30,8 +31,11 @@ public class StudyApplyController {
     }
     // TODO 스터디 지원 취소 기능
     @DeleteMapping("/{id}")
-    public void studyCancelApply(@PathVariable("id") Long id) {
-
+    @ResponseStatus(HttpStatus.OK)
+    public List<StudyApplicant> studyCancelApply(@PathVariable("id") Long id,
+                                                 @RequestParam Long userId) {
+        List<StudyApplicant> studyApplicants = studyApplyService.studyCancel(id, userId);
+        return studyApplicants;
     }
     // TODO 스터디 수락 기능
     @GetMapping("/{id}")
