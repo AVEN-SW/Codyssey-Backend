@@ -53,7 +53,7 @@ public class StudyController {
     }
 
     // TODO 스터디 마감 기능
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/close")
     @ResponseStatus(HttpStatus.OK)
     public Study closeStudy(@PathVariable("id") Long id) {
         Study closedStudy = studyService.closeStudy(id);
