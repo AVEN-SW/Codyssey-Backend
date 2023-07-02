@@ -22,7 +22,7 @@ public class StudyApplyController {
     private final StudyApplyService studyApplyService;
 
     // 스터디 지원기능
-    @PostMapping("/{id}")
+    @PostMapping("/{id}/apply")
     @ResponseStatus(HttpStatus.OK)
     // TODO 이미 지원되어 있는 경우 예외 처리
     public List<StudyApplicant> studyApply(@PathVariable("id") Long id,
@@ -31,7 +31,7 @@ public class StudyApplyController {
         return studyApplicants;
     }
     // 스터디 지원 취소 기능
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}/cancel")
     @ResponseStatus(HttpStatus.OK)
     public List<StudyApplicant> studyCancelApply(@PathVariable("id") Long id,
                                                  @RequestParam Long userId) {
@@ -39,7 +39,7 @@ public class StudyApplyController {
         return studyApplicants;
     }
     // 스터디 수락 기능
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/accept")
     @ResponseStatus(HttpStatus.OK)
     public List<StudyRecruit> studyAcceptApply(@PathVariable("id") Long id,
                                                @RequestParam Long userId) {
@@ -48,11 +48,19 @@ public class StudyApplyController {
     }
 
     // 스터디 거절 기능
-    @PutMapping("/{id}")    // 지원 Table을 수정 (멤버를 뺴냄)
+    @DeleteMapping("/{id}/refusal")
     @ResponseStatus(HttpStatus.OK)
     public List<StudyApplicant> studyRefusalApply(@PathVariable("id") Long id,
                                   @RequestParam Long userId) {
         List<StudyApplicant> studyRecruits = studyApplyService.studyRefusal(id, userId);
         return studyRecruits;
+    }
+
+    // 스터디 지원자 목록 보기
+    @GetMapping("/{id}/list")
+    @ResponseStatus(HttpStatus.OK)
+    public List<StudyApplicant> studyApplicantList(@PathVariable("id") Long id) {
+        List<StudyApplicant> applicants = studyApplyService.studyApplicantList(id);
+        return applicants;
     }
 }

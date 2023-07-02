@@ -23,6 +23,12 @@ public class StudyApplyService {
     private final StudyApplicantRepository studyApplicantRepository;
     private final StudyRecruitRepository studyRecruitRepository;
 
+    // 게시판 지원자 목록 보기
+    public List<StudyApplicant> studyApplicantList(Long studyId) {
+        List<StudyApplicant> findApplicants = studyApplicantRepository.findByStudyId(studyId);
+        return findApplicants;
+    }
+
     public List<StudyApplicant> studyApply(Long studyId, StudyApplyRequest request) {
 
         Optional<StudyApplicant> findApplicant = studyApplicantRepository.findByStudyIdAndApplicantUserId(studyId, request.getApplicantUserId());
