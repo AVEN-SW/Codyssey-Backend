@@ -23,10 +23,16 @@ public class StudyApplyService {
     private final StudyApplicantRepository studyApplicantRepository;
     private final StudyRecruitRepository studyRecruitRepository;
 
-    // 게시판 지원자 목록 보기
+    // Study 지원자 목록 보기
     public List<StudyApplicant> studyApplicantList(Long studyId) {
         List<StudyApplicant> findApplicants = studyApplicantRepository.findByStudyId(studyId);
         return findApplicants;
+    }
+
+    // Study 확정 멤버 목록 보기
+    public List<StudyRecruit> studyRecruitList(Long studyId) {
+        List<StudyRecruit> findRecruit = studyRecruitRepository.findByStudyId(studyId);
+        return findRecruit;
     }
 
     public List<StudyApplicant> studyApply(Long studyId, StudyApplyRequest request) {

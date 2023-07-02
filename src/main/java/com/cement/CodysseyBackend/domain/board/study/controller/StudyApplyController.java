@@ -24,7 +24,6 @@ public class StudyApplyController {
     // 스터디 지원기능
     @PostMapping("/{id}/apply")
     @ResponseStatus(HttpStatus.OK)
-    // TODO 이미 지원되어 있는 경우 예외 처리
     public List<StudyApplicant> studyApply(@PathVariable("id") Long id,
                                            @RequestBody StudyApplyRequest request) {
         List<StudyApplicant> studyApplicants = studyApplyService.studyApply(id, request);
@@ -57,10 +56,18 @@ public class StudyApplyController {
     }
 
     // 스터디 지원자 목록 보기
-    @GetMapping("/{id}/list")
+    @GetMapping("/{id}/applicant-list")
     @ResponseStatus(HttpStatus.OK)
     public List<StudyApplicant> studyApplicantList(@PathVariable("id") Long id) {
         List<StudyApplicant> applicants = studyApplyService.studyApplicantList(id);
         return applicants;
+    }
+
+    // 스터디 확정 멤버 목록 보기
+    @GetMapping("/{id}/recruit-list")
+    @ResponseStatus(HttpStatus.OK)
+    public List<StudyRecruit> studyRecruitList(@PathVariable("id") Long id) {
+        List<StudyRecruit> recruits = studyApplyService.studyRecruitList(id);
+        return recruits;
     }
 }
