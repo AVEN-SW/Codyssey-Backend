@@ -6,11 +6,13 @@ import com.cement.CodysseyBackend.domain.board.project.dto.ProjectUpdateRequest;
 import com.cement.CodysseyBackend.domain.board.project.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class ProjectService {
 
@@ -56,5 +58,6 @@ public class ProjectService {
         projectRepository.save(project);
         return project;
     }
+
 
 }
