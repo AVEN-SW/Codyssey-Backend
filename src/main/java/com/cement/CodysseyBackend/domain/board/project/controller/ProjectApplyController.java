@@ -31,10 +31,11 @@ public class ProjectApplyController {
     }
 
     // 프로젝트 지원 거절기능
-    @DeleteMapping("/{applicantUserId}/refusal")
+    @DeleteMapping("/{projectId}/refusal")
     @ResponseStatus(HttpStatus.OK)
-    public List<ProjectApplicant> applyCancelProject (@PathVariable("applicantUserId") Long applicantUserId){
-        List<ProjectApplicant> projectApplicants = projectApplyService.cancelApplyProject(applicantUserId);
+    public List<ProjectApplicant> applyCancelProject (@PathVariable("projectId") Long projectId,
+                                                      @RequestParam Long userId){
+        List<ProjectApplicant> projectApplicants = projectApplyService.cancelApplyProject(projectId, userId);
         return projectApplicants;
     }
 }

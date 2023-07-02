@@ -32,12 +32,16 @@ public class ProjectApplyService {
 
     }
 
-    public List<ProjectApplicant> cancelApplyProject(Long applicantUserId){
-        Optional<ProjectApplicant> OptionalprojectApplicant = projectApplyRepository.findById(applicantUserId);
-        ProjectApplicant projectApplicant = OptionalprojectApplicant.get();
+    public List<ProjectApplicant> cancelApplyProject(Long projectId, Long userId){
+        Optional<ProjectApplicant> findProjectApplicant = projectApplyRepository.findByProjectIdAndApplicantUserId(projectId, userId);
 
-        projectApplyRepository.delete(projectApplicant);
-        List<ProjectApplicant> projectApplicants = projectApplyRepository.findAll();
+        // 지원자가 없는경우
+        if (findProjectApplicant.isEmpty()) {
+            return null;
+        }
+
+        projectApplyRepository.delete(findProjectApplicant.get());
+        List<ProjectApplicant> projectApplicants = projectApplyRepository.findByProjectId(projectId);
         return projectApplicants;
     }
 
