@@ -6,8 +6,13 @@ import com.cement.CodysseyBackend.domain.board.project.repository.ProjectApplyRe
 import com.cement.CodysseyBackend.domain.board.project.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class ProjectApplyService {
 
@@ -25,6 +30,19 @@ public class ProjectApplyService {
        ProjectApplicant returnProjectApplicant = projectApplyRepository.save(projectApplicant);
        return returnProjectApplicant;
 
+    }
+
+    public List<ProjectApplicant> cancelApplyProject(Long projectId, Long userId){
+        Optional<ProjectApplicant> findProjectApplicant = projectApplyRepository.findByProjectIdAndApplicantUserId(projectId, userId);
+
+        // 지원자가 없는경우
+        if (findProjectApplicant.isEmpty()) {
+            return null;
+        }
+
+        projectApplyRepository.delete(findProjectApplicant.get());
+        List<ProjectApplicant> projectApplicants = projectApplyRepository.findByProjectId(projectId);
+        return projectApplicants;
     }
 
 }
