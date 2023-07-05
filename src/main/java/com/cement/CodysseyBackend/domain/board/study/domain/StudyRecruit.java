@@ -24,13 +24,9 @@ public class StudyRecruit {
     @Column(name = "recruit_user_id")
     private Long recruitUserId;
 
-    @Column(name = "position")
-    private String position;
-
     @Builder
-    public StudyRecruit(Long studyId, Long recruitUserId, String position) {
+    public StudyRecruit(Long studyId, Long recruitUserId) {
         this.studyId = studyId;
         this.recruitUserId = recruitUserId;
-        this.position = position;
     }
 }

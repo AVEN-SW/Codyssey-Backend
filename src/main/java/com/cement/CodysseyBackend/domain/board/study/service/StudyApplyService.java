@@ -85,7 +85,6 @@ public class StudyApplyService {
         StudyRecruit studyRecruit = StudyRecruit.builder()
                 .studyId(studyId)
                 .recruitUserId(userId)
-                .position(findApplicant.get().getPosition())
                 .build();
         studyRecruitRepository.save(studyRecruit);
 

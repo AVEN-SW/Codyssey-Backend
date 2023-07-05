@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ProjectApplyRepository extends JpaRepository<ProjectApplicant, Long> {
+public interface ProjectApplyRepository extends JpaRepository<ProjectApplicant, Long>{
     Optional<ProjectApplicant> findByProjectIdAndApplicantUserId(Long projectId, Long userId);
     List<ProjectApplicant> findByProjectId(Long projectId);
 
-    ProjectApplicant findByApplicantIdAndProjectId(Long projectId, Long userId);
+    ProjectApplicant findByApplicantUserIdAndProjectId(Long userId, Long projectId);
 
 }

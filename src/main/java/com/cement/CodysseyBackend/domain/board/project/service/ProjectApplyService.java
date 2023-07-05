@@ -4,6 +4,7 @@ import com.cement.CodysseyBackend.domain.board.project.domain.ProjectApplicant;
 import com.cement.CodysseyBackend.domain.board.project.domain.ProjectRecruit;
 import com.cement.CodysseyBackend.domain.board.project.dto.ProjectApplyRequest;
 import com.cement.CodysseyBackend.domain.board.project.repository.ProjectApplyRepository;
+import com.cement.CodysseyBackend.domain.board.project.repository.ProjectRecruitRepository;
 import com.cement.CodysseyBackend.domain.board.project.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.util.Optional;
 public class ProjectApplyService {
 
     private final ProjectApplyRepository projectApplyRepository;
+    private final ProjectRecruitRepository projectRecruitRepository;
 
     // 프로젝트 지원
     public ProjectApplicant applyProject(ProjectApplyRequest request){
@@ -49,17 +51,22 @@ public class ProjectApplyService {
     }
 
     // 프로젝트 지원 수락
-    public List<ProjectRecruit> acceptApplyProject(Long projectId, Long userId){
-        ProjectApplicant projectApplicant = projectApplyRepository.findByApplicantIdAndProjectId(userId, projectId);
+    public ProjectRecruit acceptApplyProject(Long projectId, Long userId){
+        // 지원자 테이블에서 해당 지원자 정보 조회
+        ProjectApplicant projectApplicant = projectApplyRepository.findByApplicantUserIdAndProjectId(userId, projectId);
 
+        // 지원자 정보 바탕으로 지원 확장 테이블 데이터 생성
          ProjectRecruit projectRecruit = ProjectRecruit.builder()
                  .projectId(projectId)
                  .recruitedUserId(userId)
                  .position(projectApplicant.getPosition())
                  .build();
-         
+        projectRecruitRepository.save(projectRecruit);
 
-        return null;
+        // 기존 지원자 정보 삭제
+        projectApplyRepository.delete(projectApplicant);
+
+        return projectRecruit;
     }
 
 

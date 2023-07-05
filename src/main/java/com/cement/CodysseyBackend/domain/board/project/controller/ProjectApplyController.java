@@ -43,8 +43,10 @@ public class ProjectApplyController {
     // 프로젝트 지원 수락
     @GetMapping("{projectId}/accept")
     @ResponseStatus(HttpStatus.CREATED)
-    public List<ProjectRecruit> acceptProject(@PathVariable("projectId") Long projectId,
-                                              @RequestParam Long userId){
-        return null;
+    public ProjectRecruit acceptProject(@PathVariable("projectId") Long projectId,
+                                        @RequestParam Long userId){
+        ProjectRecruit projectRecruit = projectApplyService.acceptApplyProject(projectId, userId);
+
+        return projectRecruit;
     }
 }

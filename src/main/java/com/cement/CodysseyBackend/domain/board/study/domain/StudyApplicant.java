@@ -27,9 +27,6 @@ public class StudyApplicant {
     @Column(name = "content")
     private String content;
 
-    @Column(name = "position")
-    private String position;
-
     @Builder
     public StudyApplicant(Long studyId, Long applicantUserId, String content, String position) {
         this.studyId = studyId;
