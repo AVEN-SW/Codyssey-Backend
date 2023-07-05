@@ -18,6 +18,7 @@ public class ProjectController {
 
     private final ProjectService projectService;
 
+    // 프로젝트 생성
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Project createProject(@RequestBody ProjectCreateRequest request){
@@ -25,6 +26,7 @@ public class ProjectController {
         return project;
     }
 
+    // 프로젝트 목록 조회
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Project> readProject(){
@@ -32,6 +34,8 @@ public class ProjectController {
         return projectList;
     }
 
+
+    // 프로젝트 수정
     @PutMapping("/{projectId}")
     @ResponseStatus(HttpStatus.OK)
     public Project modifyProject(@PathVariable("projectId") Long projectId,
@@ -41,6 +45,7 @@ public class ProjectController {
         return project;
     }
 
+    // 프로젝트 삭제
     @DeleteMapping("/{projectId}")
     @ResponseStatus(HttpStatus.OK)
     public Project deleteProject(@PathVariable("projectId") Long projectId) {

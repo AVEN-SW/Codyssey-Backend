@@ -3,6 +3,7 @@ package com.cement.CodysseyBackend.domain.board.project.controller;
 
 import com.cement.CodysseyBackend.domain.board.project.domain.Project;
 import com.cement.CodysseyBackend.domain.board.project.domain.ProjectApplicant;
+import com.cement.CodysseyBackend.domain.board.project.domain.ProjectRecruit;
 import com.cement.CodysseyBackend.domain.board.project.dto.ProjectApplyRequest;
 import com.cement.CodysseyBackend.domain.board.project.service.ProjectApplyService;
 import lombok.RequiredArgsConstructor;
@@ -37,5 +38,13 @@ public class ProjectApplyController {
                                                       @RequestParam Long userId){
         List<ProjectApplicant> projectApplicants = projectApplyService.cancelApplyProject(projectId, userId);
         return projectApplicants;
+    }
+
+    // 프로젝트 지원 수락
+    @GetMapping("{projectId}/accept")
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<ProjectRecruit> acceptProject(@PathVariable("projectId") Long projectId,
+                                              @RequestParam Long userId){
+        return null;
     }
 }
