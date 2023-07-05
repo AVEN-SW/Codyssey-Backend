@@ -28,7 +28,7 @@ public class StudyApplicant {
     private String content;
 
     @Builder
-    public StudyApplicant(Long studyId, Long applicantUserId, String content) {
+    public StudyApplicant(Long studyId, Long applicantUserId, String content, String position) {
         this.studyId = studyId;
         this.applicantUserId = applicantUserId;
         this.content = content;
