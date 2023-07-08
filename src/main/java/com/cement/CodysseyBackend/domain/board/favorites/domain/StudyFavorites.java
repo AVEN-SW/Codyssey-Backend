@@ -1,6 +1,7 @@
 package com.cement.CodysseyBackend.domain.board.favorites.domain;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -22,4 +23,10 @@ public class StudyFavorites {
 
     @Column(name = "study_id")
     private Long studyId;
+
+    @Builder
+    public StudyFavorites(Long memberId, Long studyId) {
+        this.memberId = memberId;
+        this.studyId = studyId;
+    }
 }

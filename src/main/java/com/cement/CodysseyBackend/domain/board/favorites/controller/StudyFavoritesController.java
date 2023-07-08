@@ -1,7 +1,8 @@
 package com.cement.CodysseyBackend.domain.board.favorites.controller;
 
 import com.cement.CodysseyBackend.domain.board.favorites.domain.StudyFavorites;
-import com.cement.CodysseyBackend.domain.board.study.dto.GetStudyFavoritesRequest;
+import com.cement.CodysseyBackend.domain.board.favorites.dto.AddStudyFavoritesRequest;
+import com.cement.CodysseyBackend.domain.board.favorites.dto.GetStudyFavoritesRequest;
 import com.cement.CodysseyBackend.domain.board.study.service.StudyFavoritesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,12 @@ public class StudyFavoritesController {
             return studyFavoritesList;
     }
     // TODO 즐겨찾기 등록 기능
-
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<StudyFavorites> addMemberStudyFavorites(@RequestBody AddStudyFavoritesRequest request) {
+        List<StudyFavorites> studyFavoritesList = studyFavoritesService.addMemberStudyFavorites(request.getStudyId(), request.getMemberId());
+        return studyFavoritesList;
+    }
     
     // TODO 즐겨찾기 삭제 기능
 }
