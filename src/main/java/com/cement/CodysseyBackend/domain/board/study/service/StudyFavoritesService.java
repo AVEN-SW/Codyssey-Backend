@@ -17,4 +17,13 @@ public class StudyFavoritesService {
         List<StudyFavorites> studyFavoritesList = studyFavoritesRepository.findByMemberId(memberId);
         return studyFavoritesList;
     }
+
+    public List<StudyFavorites> addMemberStudyFavorites(Long studyId, Long memberId) {
+        StudyFavorites studyFavorites = StudyFavorites.builder()
+                .studyId(studyId)
+                .memberId(memberId)
+                .build();
+        studyFavoritesRepository.save(studyFavorites);
+        return getMemberStudyFavorites(memberId);
+    }
 }
