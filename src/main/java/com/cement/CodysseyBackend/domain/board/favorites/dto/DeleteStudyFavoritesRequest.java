@@ -6,5 +6,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class DeleteStudyFavoritesRequest {
-    private Long studyBookmarkId;
+    private Long studyFavoritesId;
 }

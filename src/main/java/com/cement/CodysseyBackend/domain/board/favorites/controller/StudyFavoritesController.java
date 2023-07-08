@@ -37,7 +37,7 @@ public class StudyFavoritesController {
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
     public List<StudyFavorites> deleteMemberStudyFavorites(@RequestBody DeleteStudyFavoritesRequest request) {
-        List<StudyFavorites> studyFavoritesList = studyFavoritesService.deleteMemberStudyFavorites(request.getStudyBookmarkId());
+        List<StudyFavorites> studyFavoritesList = studyFavoritesService.deleteMemberStudyFavorites(request.getStudyFavoritesId());
         return studyFavoritesList;
     }
 
