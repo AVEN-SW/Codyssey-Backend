@@ -33,6 +33,11 @@ public class StudyService {
         return studyList;
     }
 
+    public Study getStudy(Long id) {
+        Study study = studyRepository.findById(id).get();
+        return study;
+    }
+
     public Study deleteStudy(Long id) {
         // 삭제할 게시판 정보 가져오기
         Study findStudy = studyRepository.findById(id).get();

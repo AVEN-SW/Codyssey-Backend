@@ -34,6 +34,14 @@ public class StudyController {
         return studyList;
     }
 
+    // 스터디 정보 가져오기
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Study getStudy(@PathVariable("id") Long id) {
+        Study study = studyService.getStudy(id);
+        return study;
+    }
+
     // 스터디 삭제 기능
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
