@@ -2,8 +2,9 @@ package com.cement.CodysseyBackend.domain.board.favorites.controller;
 
 import com.cement.CodysseyBackend.domain.board.favorites.domain.StudyFavorites;
 import com.cement.CodysseyBackend.domain.board.favorites.dto.AddStudyFavoritesRequest;
+import com.cement.CodysseyBackend.domain.board.favorites.dto.DeleteStudyFavoritesRequest;
 import com.cement.CodysseyBackend.domain.board.favorites.dto.GetStudyFavoritesRequest;
-import com.cement.CodysseyBackend.domain.board.study.service.StudyFavoritesService;
+import com.cement.CodysseyBackend.domain.board.favorites.service.StudyFavoritesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -33,4 +34,11 @@ public class StudyFavoritesController {
     }
     
     // TODO 즐겨찾기 삭제 기능
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<StudyFavorites> deleteMemberStudyFavorites(@RequestBody DeleteStudyFavoritesRequest request) {
+        List<StudyFavorites> studyFavoritesList = studyFavoritesService.deleteMemberStudyFavorites(request.getStudyFavoritesId());
+        return studyFavoritesList;
+    }
+
 }

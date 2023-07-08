@@ -1,4 +1,4 @@
-package com.cement.CodysseyBackend.domain.board.study.service;
+package com.cement.CodysseyBackend.domain.board.favorites.service;
 
 import com.cement.CodysseyBackend.domain.board.favorites.domain.StudyFavorites;
 import com.cement.CodysseyBackend.domain.board.favorites.repository.StudyFavoritesRepository;
@@ -25,5 +25,13 @@ public class StudyFavoritesService {
                 .build();
         studyFavoritesRepository.save(studyFavorites);
         return getMemberStudyFavorites(memberId);
+    }
+
+    public List<StudyFavorites> deleteMemberStudyFavorites(Long studyBookmarkId) {
+        StudyFavorites studyFavorites = studyFavoritesRepository.findById(studyBookmarkId).get();
+        Long memberId = studyFavorites.getMemberId();
+        studyFavoritesRepository.deleteById(studyBookmarkId);
+        List<StudyFavorites> studyFavoritesList = studyFavoritesRepository.findByMemberId(memberId);
+        return studyFavoritesList;
     }
 }
