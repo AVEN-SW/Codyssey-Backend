@@ -2,6 +2,7 @@ package com.cement.CodysseyBackend.domain.board.community.service;
 
 import com.cement.CodysseyBackend.domain.board.community.domain.Community;
 import com.cement.CodysseyBackend.domain.board.community.dto.CommunityCreateRequest;
+import com.cement.CodysseyBackend.domain.board.community.dto.CommunityUpdateRequest;
 import com.cement.CodysseyBackend.domain.board.community.repository.CommunityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -43,5 +44,15 @@ public class CommunityService {
         findCommunity.setDeleted(true);
         Community saveCommunity = communityRepository.save(findCommunity);
         return saveCommunity;
+    }
+
+    public Community updateCommunity(Long id, CommunityUpdateRequest request) {
+        Community findCommunity = communityRepository.findById(id).get();
+        findCommunity.setTitle(request.getTitle());
+        findCommunity.setContent(request.getContent());
+        findCommunity.setCategory(request.getCategory());
+
+        Community updateCommunity = communityRepository.save(findCommunity);
+        return updateCommunity;
     }
 }

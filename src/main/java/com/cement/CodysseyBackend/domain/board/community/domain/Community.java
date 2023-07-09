@@ -20,9 +20,11 @@ public class Community {
     @Column(name = "writer_id", nullable = false)
     private Long writerId;
 
+    @Setter
     @Column(name = "title", nullable = false)
     private String title;
 
+    @Setter
     @Column(name = "content", nullable = false)
     private String content;
 
@@ -49,6 +51,7 @@ public class Community {
     @Column(name = "isDeleted", nullable = false)
     private boolean isDeleted;
 
+    @Setter
     @Column(name = "category", nullable = false)
     private String category;
 
