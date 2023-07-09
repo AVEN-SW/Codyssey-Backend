@@ -37,4 +37,11 @@ public class CommunityService {
         Community community = communityRepository.findById(id).get();
         return community;
     }
+
+    public Community deleteCommunity(Long id) {
+        Community findCommunity = communityRepository.findById(id).get();
+        findCommunity.setDeleted(true);
+        Community saveCommunity = communityRepository.save(findCommunity);
+        return saveCommunity;
+    }
 }

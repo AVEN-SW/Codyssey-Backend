@@ -1,9 +1,6 @@
 package com.cement.CodysseyBackend.domain.board.community.domain;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -29,9 +26,11 @@ public class Community {
     @Column(name = "content", nullable = false)
     private String content;
 
+    @Setter
     @Column(name = "like_count", nullable = false)
     private Long likeCount;
 
+    @Setter
     @Column(name = "dislike_count", nullable = false)
     private Long dislikeCount;
 
@@ -46,6 +45,7 @@ public class Community {
     @UpdateTimestamp
     private Timestamp updateAt;
 
+    @Setter
     @Column(name = "isDeleted", nullable = false)
     private boolean isDeleted;
 

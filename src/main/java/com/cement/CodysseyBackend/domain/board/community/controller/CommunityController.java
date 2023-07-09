@@ -39,7 +39,14 @@ public class CommunityController {
         Community community = communityService.getCommunity(id);
         return community;
     }
+
     // TODO 게시글 삭제 기능
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Community deleteCommunity(@PathVariable("id") Long id) {
+        Community community = communityService.deleteCommunity(id);
+        return community;
+    }
     // TODO 게시글 수정 기능
     // TODO 게시글 좋아요 기능
     // TODO 게시글 싫어요 기능
