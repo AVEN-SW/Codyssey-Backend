@@ -32,4 +32,9 @@ public class CommunityService {
         List<Community> communityList = communityRepository.findByIsDeleted(false);
         return communityList;
     }
+
+    public Community getCommunity(Long id) {
+        Community community = communityRepository.findById(id).get();
+        return community;
+    }
 }

@@ -31,7 +31,14 @@ public class CommunityController {
         List<Community> communityList = communityService.getCommunityList();
         return communityList;
     }
+
     // TODO 특정 게시글 확인
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Community getCommunity(@PathVariable("id") Long id) {
+        Community community = communityService.getCommunity(id);
+        return community;
+    }
     // TODO 게시글 삭제 기능
     // TODO 게시글 수정 기능
     // TODO 게시글 좋아요 기능
