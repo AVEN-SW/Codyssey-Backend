@@ -2,6 +2,7 @@ package com.cement.CodysseyBackend.domain.board.community.controller;
 
 import com.cement.CodysseyBackend.domain.board.community.domain.Community;
 import com.cement.CodysseyBackend.domain.board.community.dto.CommunityCreateRequest;
+import com.cement.CodysseyBackend.domain.board.community.dto.CommunityUpdateRequest;
 import com.cement.CodysseyBackend.domain.board.community.service.CommunityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -47,7 +48,17 @@ public class CommunityController {
         Community community = communityService.deleteCommunity(id);
         return community;
     }
+
     // TODO 게시글 수정 기능
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Community updateCommunity(@PathVariable("id") Long id,
+                                        @RequestBody CommunityUpdateRequest request) {
+        Community updateCommunity = communityService.updateCommunity(id, request);
+
+        return updateCommunity;
+    }
+
     // TODO 게시글 좋아요 기능
     // TODO 게시글 싫어요 기능
 }
