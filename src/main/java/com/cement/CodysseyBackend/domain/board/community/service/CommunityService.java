@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -24,5 +26,10 @@ public class CommunityService {
 
         Community createdCommunity = communityRepository.save(community);
         return createdCommunity;
+    }
+
+    public List<Community> getCommunityList() {
+        List<Community> communityList = communityRepository.findByIsDeleted(false);
+        return communityList;
     }
 }

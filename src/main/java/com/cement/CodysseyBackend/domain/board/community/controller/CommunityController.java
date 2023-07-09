@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/board/community")
@@ -23,6 +25,12 @@ public class CommunityController {
     }
     
     // TODO 게시글 목록 가져오기
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<Community> getCommunityList() {
+        List<Community> communityList = communityService.getCommunityList();
+        return communityList;
+    }
     // TODO 특정 게시글 확인
     // TODO 게시글 삭제 기능
     // TODO 게시글 수정 기능
