@@ -52,7 +52,7 @@ public class Community {
     @Column(name = "category", nullable = false)
     private String category;
 
-
+    @Builder
     public Community(
             Long writerId, String title, String content, String category) {
         this.writerId = writerId;
