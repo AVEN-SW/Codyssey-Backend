@@ -7,12 +7,14 @@ import lombok.NoArgsConstructor;
 import lombok.extern.java.Log;
 
 import javax.persistence.*;
+import java.util.Scanner;
 
 @Table(name = "project_favorites")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
 public class ProjectFavorites {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

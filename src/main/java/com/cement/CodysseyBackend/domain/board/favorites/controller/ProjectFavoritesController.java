@@ -16,5 +16,12 @@ public class ProjectFavoritesController {
 
     private final ProjectFavoritesService projectFavoritesService;
 
+    // 즐겨찾기 추가 기능
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<ProjectFavorites> addFavorites(@RequestBody AddProjectFavoritesRequest request){
 
+        List<ProjectFavorites> projectFavorites = projectFavoritesService.createFavorites(request);
+        return projectFavorites;
+    }
 }
