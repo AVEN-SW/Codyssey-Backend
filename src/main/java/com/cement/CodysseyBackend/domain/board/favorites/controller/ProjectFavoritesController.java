@@ -16,6 +16,14 @@ public class ProjectFavoritesController {
 
     private final ProjectFavoritesService projectFavoritesService;
 
+    // 즐겨찾기 검색 기능
+    @GetMapping("/{memberId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProjectFavorites> searchFavorites(@PathVariable("memberId") Long memberId){
+        List<ProjectFavorites> projectFavorites = projectFavoritesService.findFavoritesById(memberId);
+        return projectFavorites;
+    }
+
     // 즐겨찾기 추가 기능
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -24,4 +32,15 @@ public class ProjectFavoritesController {
         List<ProjectFavorites> projectFavorites = projectFavoritesService.createFavorites(request);
         return projectFavorites;
     }
+
+    // 즐겨찾기 삭제 기능
+    @DeleteMapping("/delete/{projectFavoritesId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProjectFavorites> deleteFavorites(@PathVariable("projectFavoritesId") Long favoritesId,
+                                                  @RequestParam Long memberId){
+
+        List<ProjectFavorites> projectFavorites = projectFavoritesService.removeFavorites(favoritesId, memberId);
+        return projectFavorites;
+    }
+
 }

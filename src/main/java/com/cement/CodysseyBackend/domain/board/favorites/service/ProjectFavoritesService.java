@@ -3,11 +3,13 @@ package com.cement.CodysseyBackend.domain.board.favorites.service;
 import com.cement.CodysseyBackend.domain.board.favorites.domain.ProjectFavorites;
 import com.cement.CodysseyBackend.domain.board.favorites.dto.AddProjectFavoritesRequest;
 import com.cement.CodysseyBackend.domain.board.favorites.repository.ProjectFavoritesRepository;
+import com.cement.CodysseyBackend.domain.board.project.domain.Project;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.swing.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +36,17 @@ public class ProjectFavoritesService {
         projectFavoritesRepository.save(projectFavorite);
         List<ProjectFavorites> projectFavorites = findFavoritesById(request.getMemberId());
 
+        return projectFavorites;
+    }
+
+    // 프로젝트 즐겨찾기 삭제 기능
+
+    public List<ProjectFavorites> removeFavorites(Long favoritesId, Long memberId){
+        Optional<ProjectFavorites> optionalProjectFavorites = projectFavoritesRepository.findById(favoritesId);
+        ProjectFavorites projectFavorite = optionalProjectFavorites.get();
+
+        projectFavoritesRepository.delete(projectFavorite);
+        List<ProjectFavorites> projectFavorites = findFavoritesById(memberId);
         return projectFavorites;
     }
 }
