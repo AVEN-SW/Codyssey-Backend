@@ -22,7 +22,7 @@ public class CommunityFavoritesController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<CommunityFavorites> getMemberCommunityFavorites(@RequestBody GetCommunityFavoritesRequest request) {
-            List<CommunityFavorites> communityFavoritesList = communityFavoritesService.getMemberCommunityFavorites(request.getMember_id());
+            List<CommunityFavorites> communityFavoritesList = communityFavoritesService.getMemberCommunityFavorites(request.getMemberId());
             return communityFavoritesList;
     }
 

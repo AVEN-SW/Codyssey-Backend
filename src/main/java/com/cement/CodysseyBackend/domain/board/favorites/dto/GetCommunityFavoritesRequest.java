@@ -5,5 +5,5 @@ import lombok.Getter;
 @Getter
 public class GetCommunityFavoritesRequest {
 
-    private Long member_id;
+    private Long memberId;
 }
