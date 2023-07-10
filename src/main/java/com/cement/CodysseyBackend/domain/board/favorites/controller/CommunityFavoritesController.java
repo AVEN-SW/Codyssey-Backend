@@ -34,4 +34,12 @@ public class CommunityFavoritesController {
         return communityFavoritesList;
     }
 
+    // TODO 즐겨찾기 삭제 기능
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<CommunityFavorites> deleteMemberCommunityFavorites(@RequestBody DeleteCommunityFavoritesRequest request) {
+        List<CommunityFavorites> communityFavoritesList = communityFavoritesService.deleteMemberCommunityFavorites(request.getCommunityFavoritesId());
+        return communityFavoritesList;
+    }
+
 }
