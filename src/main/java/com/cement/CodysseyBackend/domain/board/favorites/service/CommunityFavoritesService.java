@@ -21,4 +21,12 @@ public class CommunityFavoritesService {
         return communityFavoritesList;
     }
 
+    public List<CommunityFavorites> addMemberCommunityFavorites(Long communityId, Long memberId) {
+        CommunityFavorites communityFavorites = CommunityFavorites.builder()
+                .communityId(communityId)
+                .memberId(memberId)
+                .build();
+        communityFavoritesRepository.save(communityFavorites);
+        return getMemberCommunityFavorites(memberId);
+    }
 }
