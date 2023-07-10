@@ -29,4 +29,12 @@ public class CommunityFavoritesService {
         communityFavoritesRepository.save(communityFavorites);
         return getMemberCommunityFavorites(memberId);
     }
+
+    public List<CommunityFavorites> deleteMemberCommunityFavorites(Long communityFavoritesId) {
+        CommunityFavorites communityFavorites = communityFavoritesRepository.findById(communityFavoritesId).get();
+        Long memberId = communityFavorites.getMemberId();
+        communityFavoritesRepository.deleteById(communityFavoritesId);
+        List<CommunityFavorites> communityFavoritesList = communityFavoritesRepository.findByMemberId(memberId);
+        return communityFavoritesList;
+    }
 }

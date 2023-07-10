@@ -27,10 +27,10 @@ public class StudyFavoritesService {
         return getMemberStudyFavorites(memberId);
     }
 
-    public List<StudyFavorites> deleteMemberStudyFavorites(Long studyBookmarkId) {
-        StudyFavorites studyFavorites = studyFavoritesRepository.findById(studyBookmarkId).get();
+    public List<StudyFavorites> deleteMemberStudyFavorites(Long studyFavoritesId) {
+        StudyFavorites studyFavorites = studyFavoritesRepository.findById(studyFavoritesId).get();
         Long memberId = studyFavorites.getMemberId();
-        studyFavoritesRepository.deleteById(studyBookmarkId);
+        studyFavoritesRepository.deleteById(studyFavoritesId);
         List<StudyFavorites> studyFavoritesList = studyFavoritesRepository.findByMemberId(memberId);
         return studyFavoritesList;
     }
