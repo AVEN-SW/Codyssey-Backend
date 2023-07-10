@@ -28,6 +28,7 @@ public class GithubService {
     public String getCode(String code) {
         String responseData = null;
         try {
+            // Access Token 발급
             URL url = new URL("https://github.com/login/oauth/access_token");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoInput(true);
@@ -46,7 +47,7 @@ public class GithubService {
             conn.disconnect();
 
         } catch (Exception e) {
-            System.out.println("URL ERROR");
+            System.out.println("ERROR");
         }
 
         return responseData;
