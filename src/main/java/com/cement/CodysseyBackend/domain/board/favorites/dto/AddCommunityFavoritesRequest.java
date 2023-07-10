@@ -3,7 +3,7 @@ package com.cement.CodysseyBackend.domain.board.favorites.dto;
 import lombok.Getter;
 
 @Getter
-public class GetCommunityFavoritesRequest {
-
+public class AddCommunityFavoritesRequest {
     private Long memberId;
+    private Long communityId;
 }

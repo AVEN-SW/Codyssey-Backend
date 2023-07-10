@@ -25,8 +25,8 @@ public class CommunityFavorites {
     private Long communityId;
 
     @Builder
-    public CommunityFavorites(Long memberId, Long studyId) {
+    public CommunityFavorites(Long memberId, Long communityId) {
         this.memberId = memberId;
-        this.communityId = studyId;
+        this.communityId = communityId;
     }
 }
