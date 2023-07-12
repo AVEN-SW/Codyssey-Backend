@@ -1,14 +1,18 @@
 package com.cement.CodysseyBackend.domain.board.community.service;
 
 import com.cement.CodysseyBackend.domain.board.community.domain.Community;
+import com.cement.CodysseyBackend.domain.board.community.domain.LikeMember;
 import com.cement.CodysseyBackend.domain.board.community.dto.CommunityCreateRequest;
 import com.cement.CodysseyBackend.domain.board.community.dto.CommunityUpdateRequest;
+import com.cement.CodysseyBackend.domain.board.community.dto.LikeCommunityRequest;
 import com.cement.CodysseyBackend.domain.board.community.repository.CommunityRepository;
+import com.cement.CodysseyBackend.domain.board.community.repository.LikeMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,6 +20,7 @@ import java.util.List;
 public class CommunityService {
 
     private final CommunityRepository communityRepository;
+    private final LikeMemberRepository likeMemberRepository;
 
     public Community createCommunity(CommunityCreateRequest request) {
         Community community = Community.builder()
@@ -54,5 +59,26 @@ public class CommunityService {
 
         Community updateCommunity = communityRepository.save(findCommunity);
         return updateCommunity;
+    }
+
+    public LikeMember likeCommunity(Long id, LikeCommunityRequest request) {
+
+        // TODO 중복확인
+        Optional<LikeMember> findLikeMember = likeMemberRepository.findByMemberIdAndCommunityIdAndFlag(request.getMemberId(), id, "Like");
+
+        // 이미 좋아요를 누른 경우
+        if (findLikeMember.isPresent()) {
+            likeMemberRepository.deleteById(findLikeMember.get().getLikeId());
+            return null;
+        }
+
+        LikeMember likeMember = LikeMember.builder()
+                .memberId(request.getMemberId())
+                .communityId(id)
+                .flag("Like")
+                .build();
+
+        LikeMember saveLikeMember = likeMemberRepository.save(likeMember);
+        return saveLikeMember;
     }
 }
