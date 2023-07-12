@@ -19,15 +19,15 @@ public class LikeMember {
     private Long communityId;
 
     @Column(name = "member_id", nullable = false)
-    private String member_id;
+    private Long memberId;
 
     @Column(name = "flag", nullable = false)
     private String flag;
 
     @Builder
-    public LikeMember(Long communityId, String member_id, String flag) {
+    public LikeMember(Long communityId, Long memberId, String flag) {
         this.communityId = communityId;
-        this.member_id = member_id;
+        this.memberId = memberId;
         this.flag = flag;
     }
 }

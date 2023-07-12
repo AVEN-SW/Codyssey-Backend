@@ -1,8 +1,10 @@
 package com.cement.CodysseyBackend.domain.board.community.controller;
 
 import com.cement.CodysseyBackend.domain.board.community.domain.Community;
+import com.cement.CodysseyBackend.domain.board.community.domain.LikeMember;
 import com.cement.CodysseyBackend.domain.board.community.dto.CommunityCreateRequest;
 import com.cement.CodysseyBackend.domain.board.community.dto.CommunityUpdateRequest;
+import com.cement.CodysseyBackend.domain.board.community.dto.LikeCommunityRequest;
 import com.cement.CodysseyBackend.domain.board.community.service.CommunityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -60,5 +62,12 @@ public class CommunityController {
     }
 
     // TODO 게시글 좋아요 기능
+    @PostMapping("/like/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public LikeMember likeCommunity(@PathVariable("id") Long id,
+                                    @RequestBody LikeCommunityRequest request) {
+        LikeMember likeMember = communityService.likeCommunity(id, request);
+        return likeMember;
+    }
     // TODO 게시글 싫어요 기능
 }
