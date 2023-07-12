@@ -13,7 +13,6 @@ public class MeetingCreateRequest {
     private Long locationId;
     private Long meetingLeader;
     private int maxPeople;
-    private Timestamp createdAt;
     private String meetingTitle;
     private String meetingContent;
     private String meetingType;

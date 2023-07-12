@@ -20,8 +20,8 @@ public class MeetingController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public List<Meeting> createMeeting(@RequestBody MeetingCreateRequest request){
-        
-        return null;
+        List<Meeting> meetings = meetingService.makeMeeting(request);
+        return meetings;
     }
 
 }
