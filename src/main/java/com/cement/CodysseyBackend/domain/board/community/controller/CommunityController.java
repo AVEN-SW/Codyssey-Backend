@@ -69,5 +69,13 @@ public class CommunityController {
         LikeMember likeMember = communityService.likeCommunity(id, request);
         return likeMember;
     }
+
     // TODO 게시글 싫어요 기능
+    @PostMapping("/dislike/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public LikeMember dislikeCommunity(@PathVariable("id") Long id,
+                                    @RequestBody LikeCommunityRequest request) {
+        LikeMember dislikeMember = communityService.dislikeCommunity(id, request);
+        return dislikeMember;
+    }
 }

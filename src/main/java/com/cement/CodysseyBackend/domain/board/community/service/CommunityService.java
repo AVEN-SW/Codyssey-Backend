@@ -81,4 +81,23 @@ public class CommunityService {
         LikeMember saveLikeMember = likeMemberRepository.save(likeMember);
         return saveLikeMember;
     }
+
+    public LikeMember dislikeCommunity(Long id, LikeCommunityRequest request) {
+
+        Optional<LikeMember> findLikeMember = likeMemberRepository.findByMemberIdAndCommunityIdAndFlag(request.getMemberId(), id, "Dislike");
+
+        if (findLikeMember.isPresent()) {
+            likeMemberRepository.deleteById(findLikeMember.get().getLikeId());
+            return null;
+        }
+
+        LikeMember dislikeMember = LikeMember.builder()
+                .memberId(request.getMemberId())
+                .communityId(id)
+                .flag("Dislike")
+                .build();
+
+        LikeMember saveLikeMember = likeMemberRepository.save(dislikeMember);
+        return saveLikeMember;
+    }
 }
