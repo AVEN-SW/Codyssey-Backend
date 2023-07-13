@@ -18,7 +18,7 @@ public class Meeting {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "meeting_id", nullable = false)
+    @Column(name = "meeting_id", updatable = false)
     private Long meetingId;
 
     @Column(name = "location_id", nullable = false)

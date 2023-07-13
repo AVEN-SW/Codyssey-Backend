@@ -17,16 +17,16 @@ public class ProjectApplicant {
     @Column(name = "applicant_id", updatable = false)
     private Long applicantId;
 
-    @Column(name = "project_id")
+    @Column(name = "project_id", nullable = false)
     private Long projectId;
 
-    @Column(name = "applicant_user_id")
+    @Column(name = "applicant_user_id", nullable = false)
     private Long applicantUserId;
 
-    @Column(name = "position")
+    @Column(name = "position", nullable = false)
     private String position;
 
-    @Column(name = "content")
+    @Column(name = "content", nullable = false)
     private String content;
 
     @Builder
