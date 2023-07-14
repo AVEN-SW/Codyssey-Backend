@@ -18,11 +18,11 @@ public class ProjectFavorites {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "project_favorites_id")
+    @Column(name = "project_favorites_id", updatable = false)
     private Long projectFavoritesId;
-    @Column(name = "member_id")
+    @Column(name = "member_id", nullable = false)
     private Long memberId;
-    @Column(name = "project_id")
+    @Column(name = "project_id", nullable = false)
     private Long projectId;
 
     @Builder

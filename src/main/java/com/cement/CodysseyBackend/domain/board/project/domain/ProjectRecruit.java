@@ -18,13 +18,13 @@ public class ProjectRecruit {
     @Column(name = "recruit_id", updatable = false)
     private Long recruitId;
 
-    @Column(name = "project_id")
+    @Column(name = "project_id", nullable = false)
     private Long projectId;
 
-    @Column(name = "recruited_user_id")
+    @Column(name = "recruited_user_id", nullable = false)
     private Long recruitedUserId;
 
-    @Column(name = "position")
+    @Column(name = "position", nullable = false)
     private String position;
 
     @Builder
