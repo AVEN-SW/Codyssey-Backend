@@ -34,7 +34,7 @@ public class ProjectFavoritesController {
     }
 
     // 즐겨찾기 삭제 기능
-    @DeleteMapping("/delete/{projectFavoritesId}")
+    @DeleteMapping("{projectFavoritesId}/delete/")
     @ResponseStatus(HttpStatus.OK)
     public List<ProjectFavorites> deleteFavorites(@PathVariable("projectFavoritesId") Long favoritesId,
                                                   @RequestParam Long memberId){
